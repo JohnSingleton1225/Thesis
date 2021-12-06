@@ -1,0 +1,32 @@
+library(reshape2)
+state_gdp <- read_excel("C:/Users/johns/OneDrive - Colostate/Thesis Final/Data/GDP/state gdp.xls", 
+    skip = 4)
+GDP_real<- filter(state_gdp, state_gdp$Description == "Real GDP (millions of chained 2012 dollars)")
+GDP <- as.data.frame(GDP_real[c(2:60), c(2,4,5:27)])
+attach(GDP)
+view(GDP)
+check_it <- as.data.frame(t(GDP))
+
+
+GDP_History <- ggplot(GDP) + geom_point(aes(x = `2000`, y = GeoName)) + 
+  geom_point(aes(x = `2001`, y = GeoName)) +
+  geom_point(aes(x = `2002`, y = GeoName)) +
+  geom_point(aes(x = `2003`, y = GeoName)) +
+  geom_point(aes(x = `2004`, y = GeoName)) +
+  geom_point(aes(x = `2005`, y = GeoName)) +
+  geom_point(aes(x = `2006`, y = GeoName)) +
+  geom_point(aes(x = `2007`, y = GeoName)) +
+  geom_point(aes(x = `2008`, y = GeoName)) +
+  geom_point(aes(x = `2009`, y = GeoName)) +
+  geom_point(aes(x = `2010`, y = GeoName)) +
+  geom_point(aes(x = `2011`, y = GeoName)) +
+  geom_point(aes(x = `2012`, y = GeoName)) +
+  geom_point(aes(x = `2013`, y = GeoName)) +
+  geom_point(aes(x = `2014`, y = GeoName)) +
+  geom_point(aes(x = `2015`, y = GeoName)) +
+  geom_point(aes(x = `2016`, y = GeoName)) +
+  geom_point(aes(x = `2017`, y = GeoName)) +
+  geom_point(aes(x = `2018`, y = GeoName)) +
+  geom_point(aes(x = `2019`, y = GeoName)) + theme_bw(base_size = 7)
+  
+GDP_History + labs(x = "Real GDP", y = "State", title = "State GDP over Time")
